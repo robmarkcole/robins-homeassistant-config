@@ -1,0 +1,79 @@
+dev_publish_on_script:
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: dev/test
+      payload: 'ON'
+  - service: notify.ios_robins_iphone
+    data:
+      message: dev_publish_on_script run!
+dev_publish_off_script:
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: dev/test
+      payload: 'OFF'
+  - service: notify.ios_robins_iphone
+    data:
+      message: dev_publish_off_script run!
+doorbell_pressed_script:
+  sequence:
+  - service: notify.Telegram
+    data:
+      title: Home Assistant Notification
+      message: --Doorbell Pressed--
+      data:
+        photo:
+        - url: http://192.168.0.21/images/image.jpg
+          caption: Doorbell View
+blink_capture_script:
+  sequence:
+  - service: blink.snap_picture
+    data:
+      friendly_name: Blink hallway
+lamp_alarm_script:
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.lamp
+      color_name: red
+      flash: long
+external_ip_script:
+  sequence:
+  - service: notify.ios_robins_iphone
+    data:
+      title: External IP Address has Changed
+      message: The new external IP is "{{ states('sensor.external_ip') }}"'
+robin_work_to_home_script:
+  sequence:
+  - service: notify.ios_robins_iphone
+    data:
+      message: Time home is {{states.sensor.work_to_home.state}} minutes
+maria_commute_script:
+  sequence:
+  - service: notify.ios_marias_iphone
+    data:
+      message: The next train is as {{states. sensor.next_waterloo_train.state}} and
+        is {{states. sensor.next_waterloo_train_status.state}}
+activate_hello_world_python:
+  sequence:
+  - service: python_script.hello_world
+    data:
+      name: you
+activate_hue_remote_python:
+  sequence:
+  - service: python_script.hue_remote
+activate_home_temperature_python:
+  sequence:
+  - service: python_script.home_temperature
+activate_train_state_python:
+  sequence:
+  - service: python_script.train_state
+activate_my_early_train_python:
+  sequence:
+  - service: python_script.my_early_train
+ifttt_boil_kettle:
+  sequence:
+  - service: ifttt.trigger
+    data_template:
+      event: boil_kettle

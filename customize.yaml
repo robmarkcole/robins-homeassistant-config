@@ -1,0 +1,79 @@
+sensor.morning_train:
+  friendly_name: morning_train status
+  icon: mdi:train
+sensor.next_train_to_wim:
+  custom_ui_state_card: traintimes
+sensor.darksky_sensor_summary:
+  friendly_name: Forecast
+sensor.darksky_sensor_temperature:
+  friendly_name: Outside temperature
+  icon: mdi:thermometer
+sensor.darksky_sensor_precip_probability:
+  friendly_name: Chance of rain
+  icon: mdi:weather-pouring
+sensor.speedtest_download:
+  icon: mdi:speedometer
+  friendly_name: Speedtest.net
+binary_sensor.living_room_nest_protect_online:
+  icon: mdi:nest-protect
+  friendly_name: Nest status
+sensor.mi_flora_moisture:
+  icon: mdi:pine-tree
+  friendly_name: Plant moisture
+sensor.time:
+  icon: mdi:clock
+sensor.next_waterloo_train:
+  icon: mdi:train
+sensor.next_waterloo_train_status:
+  icon: mdi:train
+sensor.district_line:
+  icon: mdi:subway
+sensor.home_to_waterloo:
+  icon: mdi:google-maps
+sensor.home_to_work:
+  icon: mdi:car
+sensor.wipy_temperature:
+  icon: mdi:thermometer
+  friendly_name: Wipy Temperature
+  unit_of_measurement: "\xB0C"
+sensor.wipy_humidity:
+  icon: mdi:blur
+  friendly_name: Wipy Humidity
+  unit_of_measurement: '%'
+sensor.wipy_memory:
+  friendly_name: Wipy Memory
+  unit_of_measurement: "\xB0C"
+camera.blink_camera_percy:
+  friendly_name: Blink hallway
+  icon: mdi:camera
+binary_sensor.blink_armed_status:
+  friendly_name: Blink armed?
+binary_sensor.blink_blink_camera_percy_motion_enabled:
+  friendly_name: Blink motion detect?
+sensor.blink_blink_camera_percy_battery:
+  friendly_name: Blink battery
+  icon: mdi:battery
+sensor.blink_blink_camera_percy_notifications:
+  friendly_name: Blink notifications
+  icon: mdi:message
+sensor.blink_blink_camera_percy_temperature:
+  friendly_name: Blink temperature
+  icon: mdi:thermometer
+sensor.dimmer1_state:
+  friendly_name: Dimmer1 state
+  icon: mdi:remote
+sensor.dimmer1_updated:
+  friendly_name: Dimmer1 updated
+  icon: mdi:remote
+group.Blink_group:
+  friendly_name: Blink
+group.Camera_group:
+  friendly_name: Cameras
+  icon: mdi:camera
+script.dev_publish_on_script:
+  friendly_name: Capture doorcam photo
+  icon: mdi:camera
+script.ifttt_boil_kettle: {}
+switch.unnamed_device:
+  friendly_name: TV
+  icon: mdi:tv

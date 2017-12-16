@@ -1,0 +1,42 @@
+- platform: workday
+  country: UK
+
+- platform: mqtt
+  name: "Wipy water monitor"
+  state_topic: "bme680-water"
+
+- platform: template
+  sensors:
+    motion_at_home:
+      value_template: >-
+        {%- if is_state("sensor.hall_motion_sensor", "on")
+        or is_state("sensor.living_room_motion_sensor", "on")
+        or is_state("sensor.bedroom_motion_sensor", "on")
+            -%}
+        True
+        {%- else -%}
+        False
+        {%- endif %}
+
+
+- platform: 'bayesian'
+  name: 'in_bed_bayesian'
+  prior: 0.25
+  probability_threshold: 0.75
+  observations:
+    - entity_id: 'group.all_lights'
+      prob_given_true: 0.5
+      platform: 'state'
+      to_state: 'off'
+    - entity_id: 'sensor.living_room_motion_sensor'
+      prob_given_true: 0.7
+      platform: 'state'
+      to_state: 'off'
+    - entity_id: 'sensor.bedroom_motion_sensor'
+      prob_given_true: 0.7
+      platform: 'state'
+      to_state: 'off'
+    - entity_id: 'sensor.sun'
+      prob_given_true: 0.7
+      platform: 'state'
+      to_state: 'below_horizon'

@@ -1,0 +1,118 @@
+default_view:
+  view: yes
+  entities:
+#    - device_tracker.robins_iphone
+#    - device_tracker.marias_iphone
+    - camera.pantiltcam
+#    - device_tracker.d87d9f094bd14e8bbd487122dd5c4e68
+    - group.Controls
+    - group.Weather
+    - group.Travel
+    - group.Sensors
+    - group.BME680
+#    - group.Hue
+
+# create a group to hold the sensor
+
+next_train_to_wim_group:
+  entities:
+    - sensor.next_train_to_wim
+
+# create a view for the group
+traintimes:
+#  view: yes
+  entities:
+    - group.next_train_to_wim_group
+
+Controls:
+  entities:
+#    - input_select.bed_selector
+    - alarm_control_panel.ha_alarm
+  #  - switch.alarm
+    - light.lamp
+    - switch.tv
+    - script.ifttt_boil_kettle
+
+Weather:
+  entities:
+    - sensor.darksky_sensor_summary
+    - sensor.darksky_sensor_precip_probability
+    - sensor.merton
+    - sensor.darksky_sensor_temperature
+    - sensor.mean_temperature
+
+Travel:
+  entities:
+    - sensor.home_to_work
+    - sensor.home_to_waterloo
+    - sensor.next_train_to_wim
+    - sensor.next_train_in
+    - sensor.next_train_status
+    - sensor.next_train_estimated
+    - sensor.morning_train
+    - sensor.district
+
+Sensors:
+  entities:
+    - sensor.time
+    - binary_sensor.motion_at_home
+    - input_boolean.house_idle
+    - binary_sensor.in_bed_bayesian
+    - sensor.bayes_probability
+#    - sensor.renew_letsencrypt
+    - binary_sensor.blink_armed_status
+#    - sensor.robins_iphone
+#    - binary_sensor.motion_at_home
+#    - binary_sensor.in_bed_bayesian
+    - sensor.speedtest_download
+    - binary_sensor.living_room_nest_protect_online
+    - sensor.electric_charger_distance
+#    - sensor.living_room_remote
+#    - sensor.remote_bedroom
+
+
+BME680:
+  entities:
+    - sensor.bme680temperature
+    - sensor.bme680pressure
+    - sensor.bme680humidity
+    - sensor.bme680air_qual
+    - binary_sensor.wipy_water_monitor
+
+Blink:
+  view: yes
+  entities:
+    - sensor.blink_blink_camera_percy_notifications
+    - switch.alarm
+    - binary_sensor.blink_armed_status
+    - script.blink_capture_script
+    - camera.blink_camera_percy
+
+Cameras:
+#  view: yes
+  entities:
+    - camera.foscam_camera
+
+Scripts:
+  entities:
+    - script.activate_hue_remote_python
+    - script.activate_home_temperature_python
+    - script.activate_train_state_python
+#    - script.activate_my_early_train_python
+
+Family:
+  entities:
+    - device_tracker.robins_iphone
+    - device_tracker.marias_iphone
+
+Hue:
+  entities:
+    - sensor.bedroom_motion_sensor
+    - sensor.hall_motion_sensor
+    - sensor.living_room_motion_sensor
+    - sensor.living_room_temperature
+    - sensor.living_room_light_level
+    - sensor.living_room_remote
+    - sensor.remote_bedroom
+    - sensor.robins_iphone
+    - sensor.hue_tap

@@ -1,0 +1,135 @@
+- platform: mqtt
+  name: 'bme680-temperature'
+  state_topic: 'bme680-temperature'
+  unit_of_measurement: '°C'
+- platform: mqtt
+  name: 'bme680-humidity'
+  state_topic: 'bme680-humidity'
+  unit_of_measurement: '%'
+- platform: mqtt
+  name: 'bme680-pressure'
+  state_topic: 'bme680-pressure'
+  unit_of_measurement: 'hPa'
+- platform: mqtt
+  name: 'bme680-air_qual'
+  state_topic: 'bme680-air_qual'
+  unit_of_measurement: '%'
+
+- platform: hue
+
+- platform: london_underground
+  line:
+    - District
+
+- platform: min_max
+  type: mean
+  name: Mean temperature
+  entity_ids:
+    - sensor.blink_blink_camera_percy_temperature
+    - sensor.living_room_temperature
+    - sensor.bedroom_temperature
+    - sensor.hall_temperature
+
+- platform: london_air
+  locations:
+    - Merton
+
+- platform: uk_transport
+  app_id: !secret uk_transport_app_id
+  app_key: !secret uk_transport_app_key
+  queries:
+    - mode: train
+      origin: MAL
+      destination: WIM
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+
+- platform: google_travel_time
+  name: Home to work
+  api_key: !secret google_api
+  origin: zone.Home
+  destination: zone.Work
+
+- platform: google_travel_time
+  name: Work to home
+  api_key: !secret google_api
+  origin: zone.Work
+  destination: zone.Home
+
+- platform: google_travel_time
+  name: Home to Waterloo
+  api_key: !secret google_api
+  origin: zone.Home
+  destination: zone.Waterloo
+  options:
+    mode: transit
+
+- platform: darksky
+  api_key: !secret darksky_api
+  name: darksky_sensor
+  monitored_conditions:
+    - temperature
+    - precip_probability
+    - summary
+
+- platform: speedtest
+  monitored_conditions:
+    - download
+
+- platform: rest
+  scan_interval: 86400 # Once per day
+  resource: https://api.openchargemap.io/v2/poi/?output=json&latitude=51.3834&longitude=-0.262652&maxresults=10&compact=true&verbose=false
+  name: electric_charger_distance
+  value_template: '{{ value_json[0].AddressInfo.Distance}}'
+
+## Synology
+- platform: synologydsm
+  host: 192.168.0.30
+  username: !secret synology_username
+  password: !secret synology_password
+  monitored_conditions:
+    - cpu_total_load
+    - memory_real_usage
+    - network_up
+    - volume_percentage_used
+
+
+
+# Trains
+- platform: template
+  sensors:
+    bayes_probability:
+      friendly_name: 'Bayes probability'
+      value_template: '{{states.binary_sensor.in_bed_bayesian.attributes.probability}}'
+    next_train_status:
+      friendly_name: 'Next train status'
+      value_template: '{{states.sensor.next_train_to_wim.attributes.next_trains[0].status}}'
+    next_train_estimated:
+      friendly_name: 'Next train estimated'
+      value_template: '{{states.sensor.next_train_to_wim.attributes.next_trains[0].estimated}}'
+    next_train_scheduled:
+      friendly_name: 'Next train scheduled'
+      value_template: '{{states.sensor.next_train_to_wim.attributes.next_trains[0].scheduled}}'
+    next_train_in:
+      friendly_name: 'Next train in'
+      value_template: '{{states.sensor.next_train_to_wim.state}}'
+    merton_pm10:
+      friendly_name: 'Merton PM10'
+      value_template: '{{states.sensor.merton.attributes.data[0].pollutants[0].summary}}'
+    living_room_temperature:
+      friendly_name: 'Living room temperature'
+      value_template: '{{states.sensor.living_room_motion_sensor.attributes.temperature}}'
+      unit_of_measurement: °C
+    bedroom_temperature:
+      friendly_name: 'Bedroom temperature'
+      value_template: '{{states.sensor.bedroom_motion_sensor.attributes.temperature}}'
+      unit_of_measurement: °C
+    hall_temperature:
+      friendly_name: 'Hall temperature'
+      value_template: '{{states.sensor.hall_motion_sensor.attributes.temperature}}'
+      unit_of_measurement: °C
