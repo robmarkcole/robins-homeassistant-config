@@ -1,11 +1,11 @@
 - platform: tplink
-  host: 192.168.0.24
+  host: !secret tplink_ip
 
-- platform: template    # copy toggle switch example
+- platform: template
   switches:
     alarm:
       friendly_name: 'Blink alarm toggle'
-      value_template: "{{ is_state('binary_sensor.blink_armed_status', 'on') }}" #T_F
+      value_template: "{{ is_state('binary_sensor.blink_armed_status', 'on') }}"
       turn_on:
         service: script.turn_on
         entity_id: script.alarm_on_script

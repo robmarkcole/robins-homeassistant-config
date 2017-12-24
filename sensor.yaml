@@ -89,7 +89,7 @@
 
 ## Synology
 - platform: synologydsm
-  host: 192.168.0.30
+  host: !secret nas_ip
   username: !secret synology_username
   password: !secret synology_password
   monitored_conditions:

@@ -5,6 +5,10 @@
   name: "Wipy water monitor"
   state_topic: "bme680-water"
 
+- platform: mqtt
+  name: "Doorbell"
+  state_topic: "doorbell"
+
 - platform: template
   sensors:
     motion_at_home:
@@ -18,25 +22,34 @@
         False
         {%- endif %}
 
+- platform: template
+  sensors:
+    late_night_sensor:
+      value_template: >-
+          {{ strptime("22:00", "%H%M")  < now().strftime("%H:%M")
+             or now().strftime("%H:%M") < strptime("07:00", "%H%M") }}
+
+
+- platform: template
+  sensors:
+    devices_home:
+      value_template: >-
+        {{ is_state("group.all_devices", "home") }}
 
 - platform: 'bayesian'
   name: 'in_bed_bayesian'
   prior: 0.25
-  probability_threshold: 0.75
+  probability_threshold: 0.5
   observations:
     - entity_id: 'group.all_lights'
-      prob_given_true: 0.5
+      prob_given_true: 0.4
       platform: 'state'
       to_state: 'off'
-    - entity_id: 'sensor.living_room_motion_sensor'
+    - entity_id: 'input_boolean.house_idle'
+      prob_given_true: 0.6
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'binary_sensor.late_night_sensor'
       prob_given_true: 0.7
       platform: 'state'
-      to_state: 'off'
-    - entity_id: 'sensor.bedroom_motion_sensor'
-      prob_given_true: 0.7
-      platform: 'state'
-      to_state: 'off'
-    - entity_id: 'sensor.sun'
-      prob_given_true: 0.7
-      platform: 'state'
-      to_state: 'below_horizon'
+      to_state: 'on'

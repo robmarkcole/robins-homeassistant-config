@@ -1,12 +1,3 @@
-- id: Hue_remote_automation
-  alias: Hue remote automation
-  trigger:
-  - entity_id: sensor.remote_living_room_updated
-    platform: state
-  - entity_id: sensor.remote_living_room_button
-    platform: state
-  action:
-  - service: python_script.hue_remote
 - id: morning_kettle_id
   alias: Morning kettle
   trigger:
@@ -26,272 +17,65 @@
       entity_id: automation.morning_kettle
     service: automation.turn_off
   - delay:
-      minutes: 60
+      minutes: 30
   - data:
       entity_id: automation.morning_kettle
     service: automation.turn_on
-- id: traffic_notification_id
-  alias: Traffic notification
-  trigger:
-    platform: time
-    hours: 16
-    minutes: 55
-    seconds: 0
-  condition:
-  - condition: state
-    entity_id: binary_sensor.workday_sensor
-    state: 'on'
-  - condition: numeric_state
-    entity_id: sensor.work_to_home
-    above: 35
-  action:
-    service: notify.ios_robins_iphone
-    data:
-      message: Time home is {{states.sensor.work_to_home.state}} minutes
-- alias: Set Alarm when home empty
-  trigger:
-    platform: state
-    entity_id: group.family
-    from: home
-  action:
-    service: script.turn_on
-    entity_id: script.alarm_on_script
-- alias: Cancel Alarm when home
-  trigger:
-    platform: state
-    entity_id: group.family
-    to: home
-  action:
-    service: script.turn_on
-    entity_id: script.alarm_off_script
-- action:
-  - service: python_script.train_state
-  alias: train_state_trigger
-  condition:
-  - after: 06:00:00
-    before: 08:00:00
-    condition: time
-  id: '1503121451330'
-  trigger:
-  - entity_id: sensor.next_train_to_wim
-    platform: state
-- action:
-  - data:
-      device_armed: 'False'
-    service: blink.arm_system
-  - data:
-      message: alarm off!
-    service: notify.ios_robins_iphone
-  alias: Alarm_off_automation
-  condition: []
-  id: '1505492910934'
-  trigger:
-  - entity_id: sensor.robins_iphone
-    platform: state
-    to: 'on'
-  - entity_id: alarm_control_panel.ha_alarm
-    platform: state
-    to: disarmed
-  - entity_id: sensor.hall_remote
-    platform: state
-    to: 4_hold
-- action:
-  - data:
-      device_armed: 'True'
-    service: blink.arm_system
-  - data:
-      message: alarm on!
-    service: notify.ios_robins_iphone
+- id: '1503121451330'
   alias: Alarm_on_automation
-  condition: []
-  id: '1505625441917'
   trigger:
-  - entity_id: alarm_control_panel.ha_alarm
-    platform: state
-    to: armed_away
-  - entity_id: alarm_control_panel.ha_alarm
-    platform: state
-    to: armed_home
   - entity_id: sensor.hall_remote
     platform: state
-    to: 1_hold
-- action:
-  - data:
-      message: You are in bed
-    service: notify.ios_robins_iphone
-  alias: in_bed_automation
-  condition: []
-  id: '1505629324893'
-  trigger:
-  - entity_id: binary_sensor.in_bed_bayesian
-    platform: state
-    to: 'on'
-- action:
-  - data:
-      effect: colorloop
-      entity_id: light.lamp
-    service: light.turn_on
-  alias: lamp_colour_loop_automation
-  condition: []
-  id: '1505631555662'
-  trigger:
-  - entity_id: sensor.living_room_remote
-    platform: state
-    to: 1_click
-- action:
-  - data:
-      entity_id: switch.tv
-    service: switch.turn_on
-  alias: remote_long_press_on_automation
-  condition: []
-  id: '1505635321558'
-  trigger:
-  - entity_id: sensor.living_room_remote
-    platform: state
-    to: 1_hold
-- action:
-  - data:
-      entity_id: switch.tv
-    service: switch.turn_off
-  alias: remote_long_press_off_automation
-  condition: []
-  id: '1505636692770'
-  trigger:
-  - entity_id: sensor.living_room_remote
-    platform: state
     to: 4_hold
-- action:
+  action:
   - data:
       device_armed: 'True'
     service: blink.arm_system
   - data:
       message: alarm on!
     service: notify.ios_robins_iphone
-  alias: Alarm_on_weekday
-  condition:
-  - condition: state
-    entity_id: binary_sensor.workday_sensor
-    state: 'on'
-  id: '1505795851430'
-  trigger:
-  - at: 09:30
-    platform: time
-- action:
-  - data:
-      device_armed: 'False'
-    service: blink.arm_system
-  - data:
-      message: alarm off!
-    service: notify.ios_robins_iphone
-  alias: Alarm_off_weekday
-  condition:
-  - condition: state
-    entity_id: binary_sensor.workday_sensor
-    state: 'on'
-  id: '1505796088267'
-  trigger:
-  - at: '17:40'
-    platform: time
-- action:
-  - data:
-      device_armed: 'True'
-    service: blink.arm_system
-  - data:
-      message: alarm on!
-    service: notify.ios_robins_iphone
-  alias: Alarm_on_weekday_early
-  condition:
-  - condition: state
-    entity_id: sensor.robins_iphone
-    state: 'off'
-  id: '1505796224705'
-  trigger:
-  - at: 07:30
-    platform: time
-- action:
-  - data:
-      message: 'input_slider is {{ states.input_select.robin_loc_selector.state }}
-        value '
-    service: notify.ios_robins_iphone
-  alias: Robins_location_automation
-  condition: []
-  id: '1509296204187'
-  trigger:
-  - entity_id: input_select.robin_loc_selector
-    platform: state
-- action:
-  - data:
-      entity_id: input_select.bed_selector
-      option: bed
-    service: input_select.select_option
-  - data:
-      message: input_select.bed_selector set to 'bed'
-    service: notify.ios_robins_iphone
-  alias: Hue tap automation in bed
-  condition: []
-  id: '1509793302396'
-  trigger:
-  - entity_id: sensor.hue_tap
-    platform: state
-    to: 4_click
-- action:
-  - data:
-      entity_id: input_select.bed_selector
-      option: up
-    service: input_select.select_option
-  - data:
-      message: input_select.bed_selector set to 'up' '
-    service: notify.ios_robins_iphone
-  alias: Hue tap out of bed automation
-  condition: []
-  id: '1509793620843'
-  trigger:
-  - entity_id: sensor.hue_tap
-    platform: state
-    to: 1_click
-- action:
-  - data:
-      event: boil_kettle
-    service: ifttt.trigger
-  - data:
-      message: The kettle will boil shortly.
-    service: notify.ios_robins_iphone
-  alias: Hue tap boil kettle
-  condition: []
-  id: '1509796234632'
-  trigger:
-  - entity_id: sensor.hue_tap
-    platform: state
-    to: 2_click
-- action:
-  - service: python_script.days_until_date
-  alias: Update LetsEncrypt countdown
-  condition: []
-  id: '1510385072199'
-  trigger:
-  - at: 00:00
-    platform: time
-- action:
-  - data:
-      message: Leak detected!
-    service: notify.ios_robins_iphone
+- id: '1513338225953'
   alias: Leak automation
-  condition: []
-  id: '1513338225953'
   trigger:
   - entity_id: binary_sensor.wipy_water_monitor
     from: 'off'
     platform: state
     to: 'on'
-- action:
+  action:
   - data:
-      entity_id: input_boolean.house_idle
-    service: input_boolean.turn_on
+      message: Leak detected!
+    service: notify.ios_robins_iphone
+- id: '1513346519354'
   alias: House_idle
-  condition: []
-  id: '1513346519354'
   trigger:
   - entity_id: binary_sensor.motion_at_home
+    for:
+      minutes: 5
     from: 'on'
     platform: state
     to: 'off'
+  action:
+  - data:
+      entity_id: input_boolean.house_idle
+    service: input_boolean.turn_on
+- id: '1513507538746'
+  alias: Doorbell notification
+  trigger:
+  - entity_id: binary_sensor.doorbell
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      message: The doorbell was pressed
+    service: notify.robins_and_marias_iphones
+- id: '1513520328271'
+  alias: House_motion
+  trigger:
+  - entity_id: binary_sensor.motion_at_home
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      entity_id: input_boolean.house_idle
+    service: input_boolean.turn_off
