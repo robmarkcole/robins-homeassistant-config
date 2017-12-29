@@ -1,3 +1,7 @@
+- platform: ping
+  name: macbook
+  host: !secret mac_ip
+
 - platform: workday
   country: UK
 
@@ -6,8 +10,12 @@
   state_topic: "bme680-water"
 
 - platform: mqtt
-  name: "Doorbell"
-  state_topic: "doorbell"
+  name: "Elgato_Door"
+  state_topic: "elgato_door"
+
+- platform: mqtt
+  name: "Fibaro_leak"
+  state_topic: "fibaro_leak"
 
 - platform: template
   sensors:
@@ -51,5 +59,9 @@
       to_state: 'on'
     - entity_id: 'binary_sensor.late_night_sensor'
       prob_given_true: 0.7
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'switch.macbook_power'
+      prob_given_true: 0.1
       platform: 'state'
       to_state: 'on'
