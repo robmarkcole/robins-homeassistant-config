@@ -3,6 +3,18 @@ My [home-assistant](https://home-assistant.io/) config on 24 Dec 2017 with HA 0.
 
 <img src="https://github.com/robmarkcole/robins-homeassistant-config/blob/master/images/front-end.png">
 
+#### Leak detector
+My leak detector is a DIY sensor using micropython, with a writeup on [Hackster](https://www.hackster.io/robin-cole/micropython-leak-detector-with-adafruit-and-home-assistant-a2fa9e).
+
+#### Automation to boil me kettle in the morning
+I own an [Appkettle](https://www.myappkettle.com/) which is integrated with HA via IFTTT. Write up on [Hackster](https://www.hackster.io/robin-cole/boil-my-kettle-when-i-get-out-of-bed-in-the-morning-10e7de).
+
+#### Late train notification via lamp
+If my train is late, a hue light turns red. On [Hackster](https://www.hackster.io/robin-cole/traffic-light-alerts-for-my-morning-train-350a27).
+
+#### Elgato HomeKit sensors
+My [Elgato door sensor](https://www.elgato.com/en/eve/eve-door-window) cannot be integrated directly into HA since it is HomeKit only. To get around this I use the Homebridge addon for Hassio. See [this thread](https://community.home-assistant.io/t/triggar-ha-from-homekit-devices/3253/5). The same trick works for my [Fibaro leak sensor](https://www.fibaro.com/en/products/flood-sensor/). 
+
 #### Bayesian 'in bed' sensor
 
 My own bayesian 'in bed bayesian sensor' is working nicely now. I found that the 'sun below horizon' input wasn't particularly useful, since in the UK at this time of year the sun is setting before 5pm.! Instead I'm using a template sensor which is ON at 'late night'.
