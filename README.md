@@ -3,17 +3,35 @@ My [home-assistant](https://home-assistant.io/) config on 24 Dec 2017 with HA 0.
 
 <img src="https://github.com/robmarkcole/robins-homeassistant-config/blob/master/images/front-end.png">
 
-#### Leak detector
+#### Hue sensors
+I have hue remotes and motion sensors. I wrote a custom component to integrate them [here](https://github.com/robmarkcole/Hue-sensors-HASS).
+
+#### Water leak detector
 My leak detector is a DIY sensor using micropython, with a writeup on [Hackster](https://www.hackster.io/robin-cole/micropython-leak-detector-with-adafruit-and-home-assistant-a2fa9e).
+
+#### BME680 Temperature, humidity and air quality sensors
+I branched a [Pimoroni library](https://github.com/pimoroni/bme680) for the BME680 to publish data over MQTT, repo [here](https://github.com/robmarkcole/bme680-mqtt-micropython).
 
 #### Automation to boil me kettle in the morning
 I own an [Appkettle](https://www.myappkettle.com/) which is integrated with HA via IFTTT. Write up on [Hackster](https://www.hackster.io/robin-cole/boil-my-kettle-when-i-get-out-of-bed-in-the-morning-10e7de).
 
-#### Late train notification via lamp
+#### Late train notification via Hue lamp
 If my train is late, a hue light turns red. On [Hackster](https://www.hackster.io/robin-cole/traffic-light-alerts-for-my-morning-train-350a27).
 
 #### Elgato HomeKit sensors
-My [Elgato door sensor](https://www.elgato.com/en/eve/eve-door-window) cannot be integrated directly into HA since it is HomeKit only. To get around this I use the Homebridge addon for Hassio. See [this thread](https://community.home-assistant.io/t/triggar-ha-from-homekit-devices/3253/5). The same trick works for my [Fibaro leak sensor](https://www.fibaro.com/en/products/flood-sensor/). 
+My [Elgato door sensor](https://www.elgato.com/en/eve/eve-door-window) cannot be integrated directly into HA since it is HomeKit only. To get around this I use the Homebridge addon for Hassio. See [this thread](https://community.home-assistant.io/t/triggar-ha-from-homekit-devices/3253/5). The same trick works for my [Fibaro leak sensor](https://www.fibaro.com/en/products/flood-sensor/).
+
+#### Macbook sensor
+I have a sensor which is ON when I am using my MacBook. I did this using Hammerspoon as [described here](https://github.com/robmarkcole/HASS-hammerspoon).
+
+#### RF doorbell
+I integrate an RF doorbell using an Arduino which relays signals over the serial port, as [described here](https://github.com/robmarkcole/RF-doorbell-serial).
+
+#### Python scripts
+I am a big fan of using python_scripts over long YAML automations. I have a [dedicated repo here](https://github.com/robmarkcole/python-scripts-for-home-assistant).
+
+#### Google Cloud SQL recorder
+I use a Google cloud SQL database as a recorder, as [described here](https://github.com/robmarkcole/HASS-Google-Cloud-SQL).
 
 #### Bayesian 'in bed' sensor
 
