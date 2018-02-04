@@ -29,7 +29,7 @@ sensor.next_waterloo_train_status:
 sensor.district_line:
   icon: mdi:subway
 sensor.home_to_waterloo:
-  icon: mdi:google-maps
+  icon: mdi:train
 sensor.home_to_work:
   icon: mdi:car
 sensor.wipy_temperature:
@@ -73,7 +73,8 @@ group.Camera_group:
 script.dev_publish_on_script:
   friendly_name: Capture doorcam photo
   icon: mdi:camera
-script.ifttt_boil_kettle: {}
+script.ifttt_boil_kettle:
+  icon: mdi:kettle
 switch.unnamed_device:
   friendly_name: TV
   icon: mdi:tv
@@ -85,3 +86,27 @@ sensor.wemo_current_power_w:
   icon: mdi:power-socket-uk
 sensor.wemo_today_energy_kwh:
   icon: mdi:flash-outline
+binary_sensor.in_bed_bayesian:
+  icon: mdi:sleep
+sensor.robins_iphone:
+  icon: mdi:cellphone
+binary_sensor.motion_at_home:
+  icon: mdi:home
+sensor.time_in_bed_template:
+  icon: mdi:timer
+sensor.next_train_in:
+  icon: mdi:clock
+sensor.next_train_estimated:
+  icon: mdi:clock
+switch.alarm:
+  icon: mdi:security-home
+light.lamp:
+  icon: mdi:lamp
+sensor.merton:
+  icon: mdi:biohazard
+binary_sensor.macbook:
+  icon: mdi:laptop-mac
+switch.macbook_power:
+  icon: mdi:laptop-mac
+sensor.next_train_status:
+  icon: mdi:timetable

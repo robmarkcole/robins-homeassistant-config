@@ -1,13 +1,13 @@
 default_view:
   view: yes
   entities:
-    - camera.pantiltcam
+#    - camera.pantiltcam
     - group.Controls
     - group.Weather
     - group.Travel
     - group.Sensors
-    - group.BME680
-    - group.scripts
+#    - group.BME680
+#    - group.scripts
 
 Controls:
   entities:
@@ -40,8 +40,8 @@ Sensors:
   entities:
     - sensor.time
     - sensor.robins_iphone
-    - sensor.homeassistant_v2db
-    - binary_sensor.elgato_door
+  #  - sensor.homeassistant_v2db
+#    - binary_sensor.elgato_door
   #  - binary_sensor.fibaro_leak
   #  - binary_sensor.devices_home
     - switch.macbook_power
@@ -50,7 +50,7 @@ Sensors:
 #    - input_boolean.house_idle
     - sensor.time_in_bed_template
     - binary_sensor.in_bed_bayesian
-    - sensor.bayes_probability
+#    - sensor.bayes_probability
 #    - binary_sensor.blink_armed_status
     - sensor.speedtest_download
     - binary_sensor.living_room_nest_protect_online
@@ -59,7 +59,7 @@ Sensors:
     - sensor.wemo_today_energy_kwh
 
 BME680:
-  view: yes
+#  view: yes
   entities:
     - sensor.bme680temperature
     - sensor.bme680pressure
@@ -82,7 +82,7 @@ Cameras:
     - camera.foscam_camera
 
 Scripts:
-  view: yes
+#  view: yes
   entities:
     - script.activate_hue_remote_python
     - script.activate_home_temperature_python
