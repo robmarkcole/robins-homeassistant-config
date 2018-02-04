@@ -7,12 +7,14 @@ default_view:
     - group.Travel
     - group.Sensors
     - group.BME680
+    - group.scripts
 
 Controls:
   entities:
     - switch.alarm
     - light.lamp
-    - switch.tv
+    - switch.tplink_switch
+#    - switch.wemo_insight
     - script.ifttt_boil_kettle
 
 Weather:
@@ -21,7 +23,7 @@ Weather:
     - sensor.darksky_sensor_precip_probability
     - sensor.merton
     - sensor.darksky_sensor_temperature
-    - sensor.mean_temperature
+    - sensor.living_room_temperature
 
 Travel:
   entities:
@@ -37,23 +39,33 @@ Travel:
 Sensors:
   entities:
     - sensor.time
-    - binary_sensor.devices_home
+    - sensor.robins_iphone
+    - sensor.homeassistant_v2db
+    - binary_sensor.elgato_door
+  #  - binary_sensor.fibaro_leak
+  #  - binary_sensor.devices_home
+    - switch.macbook_power
     - binary_sensor.doorbell
     - binary_sensor.motion_at_home
 #    - input_boolean.house_idle
+    - sensor.time_in_bed_template
     - binary_sensor.in_bed_bayesian
-#    - sensor.bayes_probability
-    - binary_sensor.blink_armed_status
+    - sensor.bayes_probability
+#    - binary_sensor.blink_armed_status
     - sensor.speedtest_download
     - binary_sensor.living_room_nest_protect_online
+    - binary_sensor.kettle
+    - sensor.wemo_current_power_w
+    - sensor.wemo_today_energy_kwh
 
 BME680:
+  view: yes
   entities:
     - sensor.bme680temperature
     - sensor.bme680pressure
     - sensor.bme680humidity
     - sensor.bme680air_qual
-    - binary_sensor.wipy_water_monitor
+#    - binary_sensor.wipy_water_monitor
 
 Blink:
   view: yes
@@ -70,6 +82,7 @@ Cameras:
     - camera.foscam_camera
 
 Scripts:
+  view: yes
   entities:
     - script.activate_hue_remote_python
     - script.activate_home_temperature_python

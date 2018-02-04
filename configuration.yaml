@@ -9,13 +9,13 @@ homeassistant:
   customize: !include customize.yaml
 
 frontend:
-#  javascript_version: latest
+  javascript_version: es5
 discovery:
 history:
 logbook:
 sun:
 config:
-cloud:
+#cloud:
 ios:
 python_script:
 updater:
@@ -57,6 +57,10 @@ camera:
     name: PanTiltCam
     still_image_url: http://192.168.0.9:8123/local/capture.jpg
 
+hue:
+  bridges:
+    - host: 192.168.0.3
+
 http:
   api_password: !secret http_password
   login_attempts_threshold: 5
@@ -88,10 +92,18 @@ nest:
   client_id: !secret nest_id
   client_secret: !secret nest_secret
 
-recorder:
-  db_url: !secret my_sql_nas
+#recorder:
+#  db_url: !secret my_sql_nas
 recorder:
   db_url: !secret google_sql
+
+timer:
+  kettle:
+    duration: '00:01:00'
+
+wemo:
+  static:
+    - 192.168.0.29
 
 ###########################################################################
 ## Includes

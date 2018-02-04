@@ -1,8 +1,10 @@
 - id: morning_kettle_id
   alias: Morning kettle
   trigger:
-  - entity_id: binary_sensor.motion_at_home
+  - entity_id: sensor.living_room_motion_sensor
+    from: 'off'
     platform: state
+    to: 'on'
   condition:
   - after: 05:00:00
     before: 07:15:00
@@ -17,7 +19,7 @@
       entity_id: automation.morning_kettle
     service: automation.turn_off
   - delay:
-      minutes: 30
+      minutes: 45
   - data:
       entity_id: automation.morning_kettle
     service: automation.turn_on
@@ -79,3 +81,15 @@
   - data:
       entity_id: input_boolean.house_idle
     service: input_boolean.turn_off
+- action:
+  - data:
+      message: Kettle boiled!
+    service: notify.ios_robins_iphone
+  alias: Kettle boiled notification
+  condition: []
+  id: '1517739583248'
+  trigger:
+  - entity_id: binary_sensor.kettle
+    from: '''on'''
+    platform: state
+    to: '''off'''

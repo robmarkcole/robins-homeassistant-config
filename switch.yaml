@@ -1,6 +1,12 @@
 - platform: tplink
   host: !secret tplink_ip
 
+- platform: command_line
+  switches:
+    macbook_power:
+      command_on: ""
+      command_off: ""
+
 - platform: template
   switches:
     alarm:

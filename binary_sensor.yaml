@@ -44,13 +44,18 @@
       value_template: >-
         {{ is_state("group.all_devices", "home") }}
 
+- platform: threshold
+  name: 'Kettle'
+  entity_id: sensor.wemo_current_power_w
+  upper: 20
+
 - platform: 'bayesian'
   name: 'in_bed_bayesian'
-  prior: 0.25
-  probability_threshold: 0.5
+  prior: 0.2
+  probability_threshold: 0.45
   observations:
     - entity_id: 'group.all_lights'
-      prob_given_true: 0.4
+      prob_given_true: 0.6
       platform: 'state'
       to_state: 'off'
     - entity_id: 'input_boolean.house_idle'
@@ -62,6 +67,10 @@
       platform: 'state'
       to_state: 'on'
     - entity_id: 'switch.macbook_power'
+      prob_given_true: 0.1
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'switch.tv'
       prob_given_true: 0.1
       platform: 'state'
       to_state: 'on'

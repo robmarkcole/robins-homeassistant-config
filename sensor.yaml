@@ -15,7 +15,20 @@
   state_topic: 'bme680-air_qual'
   unit_of_measurement: '%'
 
-- platform: hue
+- platform: filesize
+  file_paths:
+    - /config/home-assistant_v2.db
+
+#- platform: hue
+
+- platform: history_stats
+  name: Time in bed
+  entity_id: binary_sensor.in_bed_bayesian
+  state: 'on'
+  type: time
+  end: '{{ now() }}'
+  duration:
+    hours: 24
 
 - platform: london_underground
   line:
@@ -100,9 +113,13 @@
 
 
 
+
 # Trains
 - platform: template
   sensors:
+    time_in_bed_template:
+      friendly_name: 'Time in bed'
+      value_template: '{{states.sensor.time_in_bed.attributes.value}}'
     bayes_probability:
       friendly_name: 'Bayes probability'
       value_template: '{{states.binary_sensor.in_bed_bayesian.attributes.probability}}'
@@ -125,6 +142,10 @@
       friendly_name: 'Living room temperature'
       value_template: '{{states.sensor.living_room_motion_sensor.attributes.temperature}}'
       unit_of_measurement: °C
+    living_room_light_level:
+      friendly_name: 'Living room light level'
+      value_template: '{{states.sensor.living_room_motion_sensor.attributes.lux}}'
+      unit_of_measurement: lux
     bedroom_temperature:
       friendly_name: 'Bedroom temperature'
       value_template: '{{states.sensor.bedroom_motion_sensor.attributes.temperature}}'
@@ -133,3 +154,11 @@
       friendly_name: 'Hall temperature'
       value_template: '{{states.sensor.hall_motion_sensor.attributes.temperature}}'
       unit_of_measurement: °C
+    wemo_current_power_w:
+      friendly_name: 'Wemo current power'
+      value_template: '{{float(states.switch.wemo_insight.attributes.current_power_w)}}'
+      unit_of_measurement: W
+    wemo_today_energy_kwh:
+      friendly_name: 'Wemo today energy'
+      value_template: '{{float(states.switch.wemo_insight.attributes.today_energy_kwh)}}'
+      unit_of_measurement: Kwh

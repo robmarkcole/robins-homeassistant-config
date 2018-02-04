@@ -35,14 +35,14 @@ sensor.home_to_work:
 sensor.wipy_temperature:
   icon: mdi:thermometer
   friendly_name: Wipy Temperature
-  unit_of_measurement: "\xB0C"
+  unit_of_measurement: °C
 sensor.wipy_humidity:
   icon: mdi:blur
   friendly_name: Wipy Humidity
   unit_of_measurement: '%'
 sensor.wipy_memory:
   friendly_name: Wipy Memory
-  unit_of_measurement: "\xB0C"
+  unit_of_measurement: °C
 camera.blink_camera_percy:
   friendly_name: Blink hallway
   icon: mdi:camera
@@ -77,3 +77,11 @@ script.ifttt_boil_kettle: {}
 switch.unnamed_device:
   friendly_name: TV
   icon: mdi:tv
+sensor.time_in_bed:
+  icon: mdi:sleep
+binary_sensor.kettle:
+  icon: mdi:kettle
+sensor.wemo_current_power_w:
+  icon: mdi:power-socket-uk
+sensor.wemo_today_energy_kwh:
+  icon: mdi:flash-outline
