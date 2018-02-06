@@ -110,3 +110,5 @@ switch.macbook_power:
   icon: mdi:laptop-mac
 sensor.next_train_status:
   icon: mdi:timetable
+binary_sensor.front_door:
+  icon: mdi:door

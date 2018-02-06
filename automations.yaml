@@ -81,15 +81,3 @@
   - data:
       entity_id: input_boolean.house_idle
     service: input_boolean.turn_off
-- action:
-  - data:
-      message: Kettle boiled!
-    service: notify.ios_robins_iphone
-  alias: Kettle boiled notification
-  condition: []
-  id: '1517739583248'
-  trigger:
-  - entity_id: binary_sensor.kettle
-    from: '''on'''
-    platform: state
-    to: '''off'''

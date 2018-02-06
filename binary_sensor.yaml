@@ -17,6 +17,12 @@
   name: "Fibaro_leak"
   state_topic: "fibaro_leak"
 
+- platform: rest
+  scan_interval: 1
+  resource: http://192.168.0.28:8123/api/states/binary_sensor.front_door
+  name: front_door
+  value_template: '{{value_json.state}}'
+
 - platform: template
   sensors:
     motion_at_home:
@@ -52,7 +58,7 @@
 - platform: 'bayesian'
   name: 'in_bed_bayesian'
   prior: 0.2
-  probability_threshold: 0.45
+  probability_threshold: 0.5
   observations:
     - entity_id: 'group.all_lights'
       prob_given_true: 0.6
@@ -63,7 +69,11 @@
       platform: 'state'
       to_state: 'on'
     - entity_id: 'binary_sensor.late_night_sensor'
-      prob_given_true: 0.7
+      prob_given_true: 0.6
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'binary_sensor.motion_at_home'
+      prob_given_true: 0.1
       platform: 'state'
       to_state: 'on'
     - entity_id: 'switch.macbook_power'
