@@ -54,8 +54,11 @@ blink:
 
 camera:
   - platform: generic
-    name: PanTiltCam
-    still_image_url: http://192.168.0.9:8123/local/capture.jpg
+    still_image_url: http://192.168.0.28:8123/api/camera_proxy/camera.last_captured_motion
+    name: bird-cam
+  - platform: generic
+    still_image_url: http://192.168.0.28:8123/api/camera_proxy/camera.live_view
+    name: Live
 
 hue:
   bridges:

@@ -1,7 +1,9 @@
 default_view:
   view: yes
   entities:
-#    - camera.pantiltcam
+    - camera.birdcam
+    - camera.live
+    - camera.rest_camera
     - group.Controls
     - group.Weather
     - group.Travel
@@ -13,7 +15,7 @@ Controls:
   entities:
     - switch.alarm
     - light.lamp
-    - switch.tplink_switch
+    - switch.tv
 #    - switch.wemo_insight
     - script.ifttt_boil_kettle
 
@@ -44,13 +46,14 @@ Sensors:
 #    - binary_sensor.elgato_door
   #  - binary_sensor.fibaro_leak
   #  - binary_sensor.devices_home
+    - binary_sensor.front_door
     - switch.macbook_power
     - binary_sensor.doorbell
     - binary_sensor.motion_at_home
 #    - input_boolean.house_idle
     - sensor.time_in_bed_template
     - binary_sensor.in_bed_bayesian
-#    - sensor.bayes_probability
+    - sensor.bayes_probability
 #    - binary_sensor.blink_armed_status
     - sensor.speedtest_download
     - binary_sensor.living_room_nest_protect_online

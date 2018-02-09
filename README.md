@@ -3,6 +3,9 @@ My [home-assistant](https://home-assistant.io/) config on 4 Feb 2018 with HA 0.6
 
 <img src="https://github.com/robmarkcole/robins-homeassistant-config/blob/master/images/front-end.png">
 
+#### HASSIO
+I run a hassio instance [as described here](https://github.com/robmarkcole/robins-hassio-config). This has a USB camera connected, and it is the feed and motion triggered images from that camera that I am displaying on this instance via the [generic](https://home-assistant.io/components/camera.generic/) camera component.
+
 #### Hue sensors
 I have Philips Hue remotes and motion sensors. I wrote a custom component to integrate them [here](https://github.com/robmarkcole/Hue-sensors-HASS).
 
@@ -10,7 +13,7 @@ I have Philips Hue remotes and motion sensors. I wrote a custom component to int
 My leak detector is a DIY sensor using micropython, with a writeup on [Hackster](https://www.hackster.io/robin-cole/micropython-leak-detector-with-adafruit-and-home-assistant-a2fa9e).
 
 #### BME680 Temperature, humidity and air quality sensors
-I branched a [Pimoroni library](https://github.com/pimoroni/bme680) for the BME680 to publish data over MQTT, repo [here](https://github.com/robmarkcole/bme680-mqtt-micropython).
+CURRENTLY NOT USING: I branched a [Pimoroni library](https://github.com/pimoroni/bme680) for the BME680 to publish data over MQTT, repo [here](https://github.com/robmarkcole/bme680-mqtt-micropython).
 
 #### Automation to boil my kettle in the morning
 I own an [Appkettle](https://www.myappkettle.com/) which is integrated with HA via IFTTT. Write up on [Hackster](https://www.hackster.io/robin-cole/boil-my-kettle-when-i-get-out-of-bed-in-the-morning-10e7de).
@@ -33,11 +36,8 @@ I am a big fan of using python_scripts over long YAML automations. I have a [ded
 #### Google Cloud SQL recorder
 I use a Google cloud SQL database as a recorder, as [described here](https://github.com/robmarkcole/HASS-Google-Cloud-SQL).
 
-#### USB camera with Motion on Hassio
-On another HA instance, I have a motion triggered USB camera using [this HASSIO addon](https://github.com/HerrHofrat/hassio-addons/tree/master/motion).
-
 #### Bayesian 'in bed' sensor
-My own bayesian 'in bed bayesian sensor' is working nicely now. I found that the 'sun below horizon' input wasn't particularly useful, since in the UK at this time of year the sun is setting before 5pm.! Instead I'm using a template sensor which is ON at 'late night'.
+My own bayesian 'in bed bayesian sensor' is working nicely after a lot of experimentation. I found that the 'sun below horizon' input wasn't particularly useful, since in the UK at this time of year the sun is setting before 5pm.! Instead I'm using a template sensor which is ON at 'late night'.
 
 ```yaml
 - platform: template
@@ -70,21 +70,24 @@ Finally the bayesian sensor is:
 - platform: 'bayesian'
   name: 'in_bed_bayesian'
   prior: 0.25
-  probability_threshold: 0.5
   observations:
-    - entity_id: 'group.all_lights'
-      prob_given_true: 0.4
-      platform: 'state'
-      to_state: 'off'
     - entity_id: 'input_boolean.house_idle'
       prob_given_true: 0.6
       platform: 'state'
       to_state: 'on'
     - entity_id: 'binary_sensor.late_night_sensor'
-      prob_given_true: 0.7
+      prob_given_true: 0.8
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'binary_sensor.motion_at_home'
+      prob_given_true: 0.1
       platform: 'state'
       to_state: 'on'
     - entity_id: 'switch.macbook_power'
+      prob_given_true: 0.1
+      platform: 'state'
+      to_state: 'on'
+    - entity_id: 'switch.tv'
       prob_given_true: 0.1
       platform: 'state'
       to_state: 'on'
