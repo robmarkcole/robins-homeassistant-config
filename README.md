@@ -1,5 +1,5 @@
 # robins-homeassistant-config
-My [home-assistant](https://home-assistant.io/) config on 4 Feb 2018 with HA 0.62.1.
+My [home-assistant](https://home-assistant.io/) config on 11 Feb 2018 with HA 0.63.
 
 <img src="https://github.com/robmarkcole/robins-homeassistant-config/blob/master/images/front-end.png">
 
