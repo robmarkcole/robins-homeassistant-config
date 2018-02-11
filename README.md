@@ -112,5 +112,5 @@ And the template sensor:
       friendly_name: 'Time in bed'
       value_template: '{{states.sensor.time_in_bed.attributes.value}}'
 ```
-Lastly, I wrote a notebook discussing the ideas behind the bayesian sensor, and many thanks to @jlmcgehee21 for his edits:
+Lastly, I wrote a notebook discussing the ideas behind the bayesian sensor, and many thanks to @jlmcgehee21 for all his edits:
 http://nbviewer.jupyter.org/github/robmarkcole/HASS-data-science/blob/master/Bayesian%20sensor%20tutorial.ipynb
