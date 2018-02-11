@@ -58,8 +58,9 @@ Sensors:
     - sensor.speedtest_download
     - binary_sensor.living_room_nest_protect_online
     - binary_sensor.kettle
-#    - sensor.wemo_current_power_w
+    - binary_sensor.kettle_warm
     - sensor.wemo_today_energy_kwh
+    - sensor.wemo_current_power_w
 
 BME680:
 #  view: yes

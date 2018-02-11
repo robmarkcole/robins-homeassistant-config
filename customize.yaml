@@ -114,3 +114,5 @@ binary_sensor.front_door:
   icon: mdi:door
 switch.tv:
   icon: mdi:television
+binary_sensor.kettle_warm:
+  icon: mdi:thermometer

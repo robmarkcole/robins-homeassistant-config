@@ -74,6 +74,9 @@ activate_my_early_train_python:
   - service: python_script.my_early_train
 ifttt_boil_kettle:
   sequence:
-  - service: ifttt.trigger
-    data_template:
+  - data_template:
       event: boil_kettle
+    service: ifttt.trigger
+  - data:
+      entity_id: timer.kettle
+    service: timer.start
