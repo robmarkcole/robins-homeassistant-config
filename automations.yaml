@@ -81,3 +81,14 @@
   - data:
       entity_id: input_boolean.house_idle
     service: input_boolean.turn_off
+- action:
+  - data:
+      entity_id: timer.kettle
+    service: timer.start
+  alias: Kettle on timer
+  condition: []
+  id: '1518374196815'
+  trigger:
+  - entity_id: binary_sensor.kettle
+    platform: state
+    to: 'on'
