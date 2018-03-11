@@ -77,6 +77,3 @@ ifttt_boil_kettle:
   - data_template:
       event: boil_kettle
     service: ifttt.trigger
-  - data:
-      entity_id: timer.kettle
-    service: timer.start

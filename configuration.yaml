@@ -7,6 +7,8 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/London
   customize: !include customize.yaml
+  whitelist_external_dirs:
+    - /config/
 
 frontend:
   javascript_version: es5
@@ -90,6 +92,9 @@ notify:
     services:
       - service: ios_robins_iphone
       - service: ios_marias_iphone
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_key
 
 nest:
   client_id: !secret nest_id
@@ -103,6 +108,12 @@ recorder:
 timer:
   kettle:
     duration: '00:05:00'
+
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret telegram_api
+    allowed_chat_ids:
+      - !secret telegram_chat_id
 
 wemo:
   static:
