@@ -1,19 +1,15 @@
 default_view:
   view: yes
   entities:
-    - camera.birdcam
-    - camera.live
-    - camera.rest_camera
     - group.Controls
     - group.Weather
     - group.Travel
     - group.Sensors
-#    - group.BME680
-#    - group.scripts
+#    - group.Blink
 
 Controls:
   entities:
-    - switch.alarm
+#    - switch.alarm
     - light.lamp
     - switch.tv
 #    - switch.wemo_insight
@@ -23,14 +19,14 @@ Weather:
   entities:
     - sensor.darksky_sensor_summary
     - sensor.darksky_sensor_precip_probability
-    - sensor.merton
+#    - sensor.merton
     - sensor.darksky_sensor_temperature
     - sensor.living_room_temperature
 
 Travel:
   entities:
     - sensor.home_to_work
-    - sensor.home_to_waterloo
+#    - sensor.home_to_waterloo
     - sensor.next_train_to_wim
     - sensor.next_train_in
     - sensor.next_train_status
@@ -40,27 +36,23 @@ Travel:
 
 Sensors:
   entities:
-    - sensor.time
-    - sensor.robins_iphone
-  #  - sensor.homeassistant_v2db
-#    - binary_sensor.elgato_door
-  #  - binary_sensor.fibaro_leak
-  #  - binary_sensor.devices_home
-    - binary_sensor.front_door
-    - switch.macbook_power
-    - binary_sensor.doorbell
+#    - sensor.time
+#    - sensor.robins_iphone
+#    - binary_sensor.front_door
+#    - switch.macbook_power
+#    - binary_sensor.doorbell
     - binary_sensor.motion_at_home
 #    - input_boolean.house_idle
-    - sensor.time_in_bed_template
-    - binary_sensor.in_bed_bayesian
-    - sensor.bayes_probability
+#    - sensor.time_in_bed_template
+#    - binary_sensor.in_bed_bayesian
+#    - sensor.bayes_probability
 #    - binary_sensor.blink_armed_status
     - sensor.speedtest_download
     - binary_sensor.living_room_nest_protect_online
     - binary_sensor.kettle
     - binary_sensor.kettle_warm
-    - sensor.wemo_today_energy_kwh
-    - sensor.wemo_current_power_w
+#    - sensor.wemo_today_energy_kwh
+#    - sensor.wemo_current_power_w
 
 BME680:
 #  view: yes
@@ -72,18 +64,13 @@ BME680:
 #    - binary_sensor.wipy_water_monitor
 
 Blink:
-  view: yes
+#  view: yes
   entities:
     - sensor.blink_blink_camera_percy_notifications
     - switch.alarm
     - binary_sensor.blink_armed_status
     - script.blink_capture_script
     - camera.blink_camera_percy
-
-Cameras:
-#  view: yes
-  entities:
-    - camera.foscam_camera
 
 Scripts:
 #  view: yes
