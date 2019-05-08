@@ -5,6 +5,9 @@ My [home-assistant](https://home-assistant.io/) [configuration](https://home-ass
 #### HASSIO
 I run a hassio on a pi 3. 
 
+#### Motion triggered USB camera
+I am using a cheap 10 euro USB webcam with a [Motion Hassio addon](https://github.com/lovejoy777/hassio-addons/tree/master/motion) [as described here](https://www.hackster.io/robin-cole/motion-activated-image-capture-and-classification-of-birds-6ef1ce).
+
 #### Hue sensors
 I have Philips Hue remotes and motion sensors. I wrote a custom component to integrate them [here](https://github.com/robmarkcole/Hue-sensors-HASS).
 
