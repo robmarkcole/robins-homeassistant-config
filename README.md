@@ -1,9 +1,9 @@
-My [home-assistant](https://home-assistant.io/) [configuration](https://home-assistant.io/docs/configuration/) files on 11 Feb 2018 with HA 0.63.
+My [home-assistant](https://home-assistant.io/) [configuration](https://home-assistant.io/docs/configuration/) files.
 
 <img src="https://github.com/robmarkcole/robins-homeassistant-config/blob/master/images/front-end.png">
 
 #### HASSIO
-I run a hassio instance [as described here](https://github.com/robmarkcole/robins-hassio-config). This has a USB camera connected, and it is the feed and motion triggered images from that camera that I am displaying on this instance via the [generic](https://home-assistant.io/components/camera.generic/) camera component.
+I run a hassio on a pi 3. 
 
 #### Hue sensors
 I have Philips Hue remotes and motion sensors. I wrote a custom component to integrate them [here](https://github.com/robmarkcole/Hue-sensors-HASS).
@@ -114,3 +114,13 @@ And the template sensor:
 ```
 Lastly, I wrote a notebook discussing the ideas behind the bayesian sensor, and many thanks to @jlmcgehee21 for all his edits:
 http://nbviewer.jupyter.org/github/robmarkcole/HASS-data-science/blob/master/Bayesian%20sensor%20tutorial.ipynb
+
+## Hassio Add-ons
+Try to limit your addons, as too many will make your system unstable.
+1. IDE: https://github.com/hassio-addons/addon-ide
+2. SSH & Web Terminal:  https://github.com/hassio-addons/addon-ssh/blob/v3.2.0/README.md
+3. MQTT Server & Web client: https://github.com/hassio-addons/addon-mqtt/blob/master/README.md
+4. Motion camera detection: https://github.com/HerrHofrat/hassio-addons
+5. Glances: https://github.com/hassio-addons/addon-glances
+6. Jupyterlab Lite: https://github.com/hassio-addons/addon-jupyterlab-lite
+7. Log Viewer: https://github.com/hassio-addons/addon-log-viewer
